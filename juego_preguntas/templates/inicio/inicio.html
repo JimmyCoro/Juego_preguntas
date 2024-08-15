@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<div class="container text-center">
+    <h1 class="my-5">Quien Sabe, Sabe!</h1>
+    <a class="btn btn-primary my-5" href="{% url 'preguntas' %}" role="button" >Ir a jugar</a>
+</div>    
+
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Registar</button>
+
+<!-- Modal Registro Jugador -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Jugador</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{% url 'save_jugador' %}" method="post">
+        {% csrf_token %}
+      <div class="modal-body">
+
+          <table>
+            {{formulario.as_table}}
+
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Send message</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}
